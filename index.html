@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap-vue.min.css" />
+	<!-- Load polyfills to support older browsers -->
+	<script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+	<script src="js/vue.min.js"></script>
+	<script src="js/bootstrap-vue.min.js"></script>
+	<script src="js/bootstrap-vue-icons.min.js"></script>
+	<style>
+		.pointer{cursor:pointer;}
+		.headlines .list-group-item { font-size:20px; padding-left:20px; }
+		.headlines .list-group-item svg { font-size:30px; cursor:pointer; position:absolute; top:13px; }
+	</style>
+</head>
+
+<body>
+	<div id="vue-app" class="">
+		<b-nav>
+			<b-nav-item active>Active</b-nav-item>
+			<b-nav-item>Link</b-nav-item>
+			<b-nav-item>Another Link</b-nav-item>
+			<b-nav-item disabled>Disabled</b-nav-item>
+		</b-nav>
+		
+		<div class="container">
+			<h1>Increlastomania</h1>
+			<b-list-group class="mb-5 headlines">
+				<b-list-group-item v-for="headline, i in headlines.slice(headlineCursor, headlineCursor+headlinesShown)" variant="info">
+					<b-icon v-if="i == 0 && headlineCursor != 0" icon="arrow-up" @click="headlineCursor--"></b-icon>
+					<b-icon v-else-if="i == headlinesShown - 1 && headlineCursor != headlines.length - headlinesShown" icon="arrow-down" @click="headlineCursor++"></b-icon>
+					<b-icon v-else icon="bullseye"></b-icon>
+					&nbsp; &nbsp; &nbsp; {{ headline }}
+				</b-list-group-item>
+			</b-list-group>
+
+			<b-row>
+				<b-col>
+					<b-list-group>
+						<b-list-group-item v-for="obj in lcol">
+							<object-item :obj="obj"></object-item>
+						</b-list-group-item>
+					</b-list-group>
+				</b-col>
+				<b-col>
+					<b-list-group>
+						<b-list-group-item v-for="obj in rcol" variant="warning">
+							<object-item :obj="obj"></object-item>
+						</b-list-group-item>
+					</b-list-group>
+				</b-col>
+			</b-row>
+		</div>
+	</div>
+	<script src="objects.js"></script>
+	<script src="components.js"></script>
+	<script src="game.js"></script>
+</body>
+</html>
