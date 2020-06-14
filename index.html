@@ -20,15 +20,15 @@
 
 <body>
 	<div id="vue-app" class="">
-		<b-nav>
+		<!--<b-nav>
 			<b-nav-item active>Active</b-nav-item>
 			<b-nav-item>Link</b-nav-item>
 			<b-nav-item>Another Link</b-nav-item>
 			<b-nav-item disabled>Disabled</b-nav-item>
-		</b-nav>
+		</b-nav>-->
 		
 		<div class="container">
-			<h1>Increlastomania</h1>
+			<h1>IncrElastoMania <small>Future History of Elma</small></h1>
 			<b-list-group class="mb-5 headlines">
 				<b-list-group-item v-for="headline, i in headlines.slice(headlineCursor, headlineCursor+headlinesShown)" variant="info">
 					<b-icon v-if="i == 0 && headlineCursor != 0" icon="arrow-up" @click="headlineCursor--"></b-icon>

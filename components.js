@@ -6,13 +6,13 @@ Vue.component('object-item', {
 		}
 	},
 	template: `<div v-if="!('visibleWhen' in obj) || obj.visibleWhen(obj)">
-					{{ obj.label }}: {{ Math.round(obj.value) }}
+					{{ obj.label }}: {{ Math.round(obj.value * 100) / 100 }}
 					<span v-for="action in obj.actions">
 						<b-button v-if="!('visibleWhen' in action) || action.visibleWhen(obj, action)" @click="actionPerform(obj, action)" :disabled="isDisabled(obj, action)" size="sm" style="margin:0 1em;">
-						{{ action.label }} {{ ('appleCost' in action) ? "(" +action.appleCost(obj)+ " apples)":"" }}
+						{{ action.label }} {{ ('appleCost' in action) ? "(" +Math.round(action.appleCost(obj))+ " apples)":"" }}
 					</b-button>
 					</span>
-					<b-icon v-if="obj.caption" class="pointer" icon="question" v-b-toggle="'caption-' + obj.name"></b-icon>
+					<a v-if="obj.caption" :title="obj.caption"><b-icon class="pointer" icon="question" v-b-toggle="'caption-' + obj.name"></b-icon></a>
 					<b-collapse :id="'caption-' + obj.name" class="container">{{ obj.caption }}</b-collapse>
 				</div>`,
 	methods: {
@@ -22,7 +22,7 @@ Vue.component('object-item', {
 			if ('appleCost' in action)
 			{
 				var appleCost = action.appleCost(obj, action);
-				obj.vue.objValChange('apples', appleCost);
+				obj.vue.objValChange('apples', Math.round(appleCost));
 			}
 
 			action.perform(obj, action);
