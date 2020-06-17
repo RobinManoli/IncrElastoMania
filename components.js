@@ -1,17 +1,21 @@
 Vue.component('object-item', {
-	props:['obj'],
+	props:['obj', 'debug'],
 	data: function () {
 		return {
 			count: 0
 		}
 	},
-	template: `<div v-if="!('visibleWhen' in obj) || obj.visibleWhen(obj)">
-					{{ obj.label }}: {{ Math.round(obj.value * 100) / 100 }}
+	template: `<div v-if="!('visibleWhen' in obj) || obj.visibleWhen(obj) || debug">
+					{{ obj.label }}: {{ isNumeric(obj.value) ? fixedDecimals(obj.value): obj.value }}
 					<span v-for="action in obj.actions">
 						<b-button v-if="!('visibleWhen' in action) || action.visibleWhen(obj, action)" @click="actionPerform(obj, action)" :disabled="isDisabled(obj, action)" size="sm" style="margin:0 1em;">
-						{{ action.label }} {{ ('appleCost' in action) ? "(" +Math.round(action.appleCost(obj))+ " apples)":"" }}
-					</b-button>
+							{{ action.label }} {{ ('appleCost' in action) ? "(" +Math.round(action.appleCost(obj))+ " apples)":"" }}
+						</b-button>
 					</span>
+					<!--<b-button v-if="debug" @click="obj.value++" size="sm">+</b-button>
+					<b-button v-if="debug" @click="obj.value--" size="sm">-</b-button>-->
+					<input v-if="debug && isNumeric(obj.value)" v-model.number="obj.value" />
+					<input v-if="debug && !isNumeric(obj.value)" v-model="obj.value" />
 					<a v-if="obj.caption" :title="obj.caption"><b-icon class="pointer" icon="question" v-b-toggle="'caption-' + obj.name"></b-icon></a>
 					<b-collapse :id="'caption-' + obj.name" class="container">{{ obj.caption }}</b-collapse>
 				</div>`,
@@ -40,8 +44,17 @@ Vue.component('object-item', {
 		},
 		
 		fixedDecimals(value) {
-			var val = (value/1).toFixed(1);
-			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+			// works but rounds
+			//var val = (value/1).toFixed(1);
+			//return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+			//https://stackoverflow.com/a/41652921
+			//truncate to make sure minute breaks make sense
+			return Math.trunc(value * 100) / 100;
+		},
+		
+		isNumeric(n) {
+			// https://stackoverflow.com/a/9716488/942621
+			return !isNaN(parseFloat(n)) && isFinite(n);
 		}
 	},
 })

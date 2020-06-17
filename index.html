@@ -29,6 +29,11 @@
 		
 		<div class="container">
 			<h1>IncrElastoMania <small>Future History of Elma</small></h1>
+			<b-button variant="success" @click="save();">Save</b-button>
+			<b-button variant="warning" @click="load();">Load</b-button>
+			<b-button variant="danger" @click="if (confirm('Lose all changes and restart?')) reset();">Reset</b-button>
+			<b-button variant="danger" @click="appleWarp == 1 ? appleWarp = 100: appleWarp = 1;">Apple Warp</b-button>
+			<b-button variant="danger" @click="debug = !debug;">Debug</b-button>
 			<b-list-group class="mb-5 headlines">
 				<b-list-group-item v-for="headline, i in headlines.slice(headlineCursor, headlineCursor+headlinesShown)" variant="info">
 					<b-icon v-if="i == 0 && headlineCursor != 0" icon="arrow-up" @click="headlineCursor--"></b-icon>
@@ -42,14 +47,14 @@
 				<b-col>
 					<b-list-group>
 						<b-list-group-item v-for="obj in lcol">
-							<object-item :obj="obj"></object-item>
+							<object-item :obj="obj" :debug="debug"></object-item>
 						</b-list-group-item>
 					</b-list-group>
 				</b-col>
 				<b-col>
 					<b-list-group>
 						<b-list-group-item v-for="obj in rcol" variant="warning">
-							<object-item :obj="obj"></object-item>
+							<object-item :obj="obj" :debug="debug"></object-item>
 						</b-list-group-item>
 					</b-list-group>
 				</b-col>
