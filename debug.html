@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>IncrElastoMania - Elma Simulation</title>
+	<title>IncrElastoMania - Debug</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/bootstrap-vue.min.css" />
@@ -31,11 +31,12 @@
 		
 		<div class="container">
 			<h1>IncrElastoMania <small>Elma Simulation</small></h1>
-			<h5>Code Name: Elma 4D QLED 8K</h5>
 			<b-button variant="success" @click="save();">Save</b-button>
-			<a target="_blank" href="https://github.com/RobinManoli/IncrElastoMania">GitHub</a>
-			<b-button variant="danger" @click="if (confirm('Lose all changes and restart?')) reset();"  style="float:right;">Reset</b-button>
-			<b-button variant="warning" @click="load();" style="float:right;">Load</b-button>
+			<b-button variant="warning" @click="load();">Load</b-button>
+			<b-button variant="danger" @click="if (confirm('Lose all changes and restart?')) reset();">Reset</b-button>
+			<a href="index.html">index</a>
+			<b-button variant="danger" @click="objs.apples.value += 60 * objs.applesPerSecond.value; objs.time.value += 60;">Apple Warp</b-button>
+			<b-button variant="danger" @click="debug = !debug;">Debug</b-button>
 			<b-list-group class="mb-5 headlines">
 				<b-list-group-item v-for="headline, i in headlines.slice(headlineCursor, headlineCursor+headlinesShown)" variant="info">
 					<b-icon v-if="i == 0 && headlineCursor != 0" icon="arrow-up" @click="headlineCursor--"></b-icon>
@@ -64,24 +65,6 @@
 		</div>
 	</div>
 	<div class="container" style="text-align:center; margin-top:5em;">
-		Share this game with whoever is standing behind your shoulder:<br>
-		<a id="page-qr-code-a" href=""></a><br>
-		<img src="" id="page-qr-code-img" /><br>
-		<script>
-			var pageURL = window.location.href;
-			data = encodeURIComponent(pageURL);
-			qrURL = "https://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=" +data+ "&qzone=1&margin=0&size=300x300&ecc=L";
-			document.getElementById('page-qr-code-img').setAttribute('src', qrURL);
-			document.getElementById('page-qr-code-a').setAttribute('href', pageURL);
-			document.getElementById('page-qr-code-a').innerHTML = pageURL;
-		</script>
-		<br>
-		<h5>Resources</h5>
-		<a target="_blank" class="btn btn-warning"  href="https://github.com/RobinManoli/IncrElastoMania">Github</a>
-		<a target="_blank" class="btn btn-success" href="https://elastomania.com">Elma</a>
-		<a target="_blank" class="btn btn-success"  href="https://elma.online">Battle</a>
-		<a target="_blank" class="btn btn-success"  href="https://moposite.com">Moposite</a>
-		<a target="_blank" class="btn btn-success"  href="https://mopolauta.moposite.com/">Mopolauta</a>
 	</div>
 	<script src="objects.js"></script>
 	<script src="components.js"></script>

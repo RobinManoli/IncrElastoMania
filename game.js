@@ -13,7 +13,7 @@ var app = new Vue({
 		rcol: rcol,
 		hcol: hcol,
 		objs: {},
-		elmaCupWinners: ['psymorph', 'elg', 'pajen', 'Jalli', 'Mielz', 'Madness', 'zeth', 'loX', 'Bokhylle', 'ANpDaD', 'Stikky', 'IRK', 'Axxu', 'swos', 'Stene', 'Nekit', 'Thorze', 'RoniMox', 'ChrisPenrose', 'Mawane', 'zworqy', 'MoSH_MaN', 'Jappe2', 'jonsykkel', 'jokke', 'jeppe', 'SveinR', 'AKB', 'rawl', 'juski'],
+		elmaCupWinners: ['psymorph', 'elg', 'pajen', 'Jalli', 'Mielz', 'Madness', 'zeth', 'loX', 'Bokhylle', 'ANpDaD', 'Stikky', 'IRK', 'Axxu', 'swos', 'Stene', 'Nekit', 'Thorze', 'RoniMox', 'ChrisPenrose', 'Mawane', 'zworqy', 'MoSH_MaN', 'Jappe2', 'jonsykkel', 'jokke', 'jeppe', 'SveinR', 'AKB', 'rawl', 'juski', 'Markku', 'SoC'],
 		worldCupWinners: ['Champi0N', 'KingKong', 'zyntifox', 'Zweq', 'TorInge', 'John', 'Kazan', 'Spef', 'Dr_Luni', 'MP', 'GroB', 'Bjenn', 'Zero', 'adi', 'talli'],
 	},
 	
@@ -155,87 +155,93 @@ var app = new Vue({
 			else if (vue.objs.battleLeader.value.length > 0) vue.objs.battleLeader.value = vue.objs.battleLeader.value.substr(0, vue.objs.battleLeader.value.length-1);
 		}, 1000);
 
-		// cheat to phase finished internals
-		//*
-		//vue.objValChange('apples', 16532);
-		vue.objValChange('applesPerSecond', 54);
-		vue.objValChange('flowers', 1);
-		vue.objValChange('gotFirstFlower', 1);
-		vue.objValChange('gotBike', 1);
-		vue.objValChange('year', 1);
-		vue.objValChange('time', 300);
-		vue.objValChange('levels', 54);
-		vue.objValChange('finishedLevels', 53);
-		vue.objValChange('plays', 399);
-		//*/
-		/*
-		// realistic cheat to phase unlock battle
-		vue.objValChange('apples', 16532);
-		vue.objValChange('applesPerSecond', 93);
-		vue.objValChange('flowers', 1);
-		vue.objValChange('gotFirstFlower', 1);
-		vue.objValChange('gotBike', 1);
-		vue.objValChange('year', 3);
-		vue.objValChange('levels', 90);
-		vue.objValChange('finishedLevels', 54);
-		vue.objValChange('plays', 10708);
-		vue.objValChange('elmaCupVersion', 1);
-		vue.objValChange('chat', "#across");
-		vue.objValChange('battleVersion', 1);
-		vue.objs.totalTime.value = 53.94;
-		//*/
-		/*
-		// realistic cheat to phase level maker 467 applesPerSecond
-		vue.objValChange('apples', 16532);
-		vue.objValChange('applesPerSecond', 467);
-		vue.objValChange('flowers', 1);
-		vue.objValChange('gotFirstFlower', 1);
-		vue.objValChange('gotBike', 1);
-		vue.objValChange('year', 3);
-		vue.objValChange('levels', 204);
-		vue.objValChange('finishedLevels', 54);
-		vue.objValChange('plays', 10708);
-		vue.objValChange('elmaCupVersion', 1);
-		vue.objValChange('chat', "#across");
-		vue.objValChange('battleVersion', 1);
-		vue.objs.totalTime.value = 53.94;
-		//*/
-		/*
-		// realistic cheat to phase elma cup 2
-		vue.objValChange('apples', 36532);
-		vue.objValChange('applesPerSecond', 523);
-		vue.objValChange('flowers', 1);
-		vue.objValChange('gotFirstFlower', 1);
-		vue.objValChange('gotBike', 1);
-		vue.objValChange('year', 3);
-		vue.objValChange('levels', 217);
-		vue.objValChange('finishedLevels', 54);
-		vue.objValChange('plays', 20250);
-		vue.objValChange('battlePlays', 20);
-		vue.objValChange('elmaCupVersion', 2);
-		vue.objValChange('elmaCupActive', 1);
-		vue.objValChange('chat', "#across");
-		vue.objValChange('battleVersion', 1);
-		vue.objs.totalTime.value = 53.38;
-		//*/
-		/*
-		// realistic cheat to phase elma cup 4 - not sure aobut elmaCupVersion
-		vue.objValChange('apples', 36532);
-		vue.objValChange('applesPerSecond', 1473);
-		vue.objValChange('flowers', 1);
-		vue.objValChange('gotFirstFlower', 1);
-		vue.objValChange('gotBike', 1);
-		vue.objValChange('year', 3);
-		vue.objValChange('levels', 323);
-		vue.objValChange('finishedLevels', 54);
-		vue.objValChange('plays', 79998);
-		vue.objValChange('battlePlays', 20);
-		vue.objValChange('elmaCupVersion', 4);
-		vue.objValChange('elmaCupActive', 0);
-		vue.objValChange('chat', 1);
-		vue.objValChange('battleVersion', 1);
-		vue.objs.totalTime.value = 52.62;
-		//*/
+
+		var path = window.location.pathname;
+		var page = path.split("/").pop();
+		if ( page == 'debug.html' )
+		{
+			// cheat to phase finished internals
+			//*
+			//vue.objValChange('apples', 16532);
+			vue.objValChange('applesPerSecond', 54);
+			vue.objValChange('flowers', 1);
+			vue.objValChange('gotFirstFlower', 1);
+			vue.objValChange('gotBike', 1);
+			vue.objValChange('year', 1);
+			vue.objValChange('time', 300);
+			vue.objValChange('levels', 54);
+			vue.objValChange('finishedLevels', 53);
+			vue.objValChange('plays', 399);
+			//*/
+			/*
+			// realistic cheat to phase unlock battle
+			vue.objValChange('apples', 16532);
+			vue.objValChange('applesPerSecond', 93);
+			vue.objValChange('flowers', 1);
+			vue.objValChange('gotFirstFlower', 1);
+			vue.objValChange('gotBike', 1);
+			vue.objValChange('year', 3);
+			vue.objValChange('levels', 90);
+			vue.objValChange('finishedLevels', 54);
+			vue.objValChange('plays', 10708);
+			vue.objValChange('elmaCupVersion', 1);
+			vue.objValChange('chat', "#across");
+			vue.objValChange('battleVersion', 1);
+			vue.objs.totalTime.value = 53.94;
+			//*/
+			/*
+			// realistic cheat to phase level maker 467 applesPerSecond
+			vue.objValChange('apples', 16532);
+			vue.objValChange('applesPerSecond', 467);
+			vue.objValChange('flowers', 1);
+			vue.objValChange('gotFirstFlower', 1);
+			vue.objValChange('gotBike', 1);
+			vue.objValChange('year', 3);
+			vue.objValChange('levels', 204);
+			vue.objValChange('finishedLevels', 54);
+			vue.objValChange('plays', 10708);
+			vue.objValChange('elmaCupVersion', 1);
+			vue.objValChange('chat', "#across");
+			vue.objValChange('battleVersion', 1);
+			vue.objs.totalTime.value = 53.94;
+			//*/
+			/*
+			// realistic cheat to phase elma cup 2
+			vue.objValChange('apples', 36532);
+			vue.objValChange('applesPerSecond', 523);
+			vue.objValChange('flowers', 1);
+			vue.objValChange('gotFirstFlower', 1);
+			vue.objValChange('gotBike', 1);
+			vue.objValChange('year', 3);
+			vue.objValChange('levels', 217);
+			vue.objValChange('finishedLevels', 54);
+			vue.objValChange('plays', 20250);
+			vue.objValChange('battlePlays', 20);
+			vue.objValChange('elmaCupVersion', 2);
+			vue.objValChange('elmaCupActive', 1);
+			vue.objValChange('chat', "#across");
+			vue.objValChange('battleVersion', 1);
+			vue.objs.totalTime.value = 53.38;
+			//*/
+			/*
+			// realistic cheat to phase elma cup 4 - not sure aobut elmaCupVersion
+			vue.objValChange('apples', 36532);
+			vue.objValChange('applesPerSecond', 1473);
+			vue.objValChange('flowers', 1);
+			vue.objValChange('gotFirstFlower', 1);
+			vue.objValChange('gotBike', 1);
+			vue.objValChange('year', 3);
+			vue.objValChange('levels', 323);
+			vue.objValChange('finishedLevels', 54);
+			vue.objValChange('plays', 79998);
+			vue.objValChange('battlePlays', 20);
+			vue.objValChange('elmaCupVersion', 4);
+			vue.objValChange('elmaCupActive', 0);
+			vue.objValChange('chat', 1);
+			vue.objValChange('battleVersion', 1);
+			vue.objs.totalTime.value = 52.62;
+			//*/
+		}
 	},
 	
 	created () {

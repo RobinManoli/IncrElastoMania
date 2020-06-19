@@ -978,7 +978,7 @@ rcol.push(
 					if ( obj.vue.objs.chatTorInge.value == 1 ) obj.vue.headlines.push("<TorInge> hi");
 					if ( obj.vue.objs.chatTorInge.value == 2 ) obj.vue.headlines.push("<TorInge> most welcome");
 					if ( obj.vue.objs.chatTorInge.value == 3 ) obj.vue.headlines.push("<TorInge> how did I learn to touch flowers?");
-					if ( obj.vue.objs.chatTorInge.value == 4 ) obj.vue.headlines.push("<TorInge> I had a dream in which I touch a flower, and when I did, I touched another flower inside a dream within that dream");
+					if ( obj.vue.objs.chatTorInge.value == 4 ) obj.vue.headlines.push("<TorInge> I had a dream in which I touched a flower, and when I did, I touched another flower inside a dream within that dream");
 					if ( obj.vue.objs.chatTorInge.value == 5 ) obj.vue.headlines.push("<TorInge> you want to know who you are?");
 					if ( obj.vue.objs.chatTorInge.value == 6 ) obj.vue.headlines.push("<TorInge> or you want to know what Elasto Mania is all about?");
 					if ( obj.vue.objs.chatTorInge.value == 7 ) obj.vue.headlines.push("<TorInge> look back to the beginning");
