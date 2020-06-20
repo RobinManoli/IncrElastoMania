@@ -264,13 +264,22 @@ lcol.push(
 						else if (totalTimeBefore > 35) diff /= Math.pow(difficulty, 10);
 						else if (totalTimeBefore > 34.5) diff /= Math.pow(difficulty, 11);
 						else if (totalTimeBefore > 34) diff /= Math.pow(difficulty, 12);
+						else if (totalTimeBefore > 33.5) diff /= Math.pow(difficulty, 13);
+						else if (totalTimeBefore > 33) diff /= Math.pow(difficulty, 14);
+						else if (totalTimeBefore > 32.5) diff /= Math.pow(difficulty, 15);
+						else if (totalTimeBefore > 32) diff /= Math.pow(difficulty, 20);
+						else if (totalTimeBefore > 31.5) diff /= Math.pow(difficulty, 30);
+						else diff /= Math.pow(difficulty, 50);
+
+						if (diff > 0.1) diff = 0.1; // total times have gone to 0 before this, so prevent this, but still give big diff
+						if (diff < 0) diff =- diff; // negative total times have been reported before this
 						//console.log(diff);
 						obj.vue.objValRelativeChange('totalTime', 1 - diff);
 
 						var totalTimeAfter = obj.vue.objVal('totalTime');
+						var minutebreak = Math.ceil(totalTimeAfter);
 						if ( Math.ceil(totalTimeBefore) != Math.ceil(totalTimeAfter))
 						{
-							var minutebreak = Math.ceil(totalTimeAfter);
 							//var applesPerSecond = parseInt( Math.pow(75-minutebreak, 1.001) );
 							var applesPerSecond = parseInt((75-minutebreak)/4) + 1;
 							obj.vue.objValChange('applesPerSecond', applesPerSecond);
@@ -301,7 +310,10 @@ lcol.push(
 							}
 						}
 
-						if (totalTimeAfter < 45 && Math.random() < 0.05)
+						var p = 0.02 * (46-minutebreak); // increase wr chance with lower tt
+						p /= (obj.vue.objs.worldRecords.value/4) + 1; // decrease wr chance with more possesed wrs
+						console.log("world records", obj.vue.objs.worldRecords.value, "tt", minutebreak, "chance:", p);
+						if (totalTimeAfter < 45 && Math.random() < p && obj.vue.objs.worldRecords.value < 54 )
 						{
 							obj.vue.objs.worldRecords.value++;
 							obj.vue.headlines.push("I've made a world record!!!!!");
@@ -767,7 +779,10 @@ rcol.push(
 				label: "Create content",
 				perform: function(obj)
 				{
-					var newFollowers = obj.vue.increlementalFactor();
+					var newFollowers = parseInt( obj.vue.increlementalFactor() );
+					newFollowers += Math.round( Math.random() * 5 ); // 0-5 -- add some randomness so that this button won't be repeatedly clickable forever
+
+					if ( newFollowers % 2 == 0 ) newFollowers += 1; // don't allow an even number, as it might cause this button to be clickable repeatedly forever
 					obj.value += newFollowers;
 					obj.vue.objs.applesPerSecond.value += newFollowers;
 
@@ -1003,6 +1018,7 @@ rcol.push(
 					if ( obj.vue.objs.chatTorInge.value == 26 ) obj.vue.headlines.push("<TorInge> you both made the game and played it: who are you?");
 					if ( obj.vue.objs.chatTorInge.value == 27 ) obj.vue.headlines.push("<TorInge> when you figure this out, you will have the BORT SODA");
 					if ( obj.vue.objs.chatTorInge.value == 28 ) obj.vue.headlines.push("<TorInge> you've beat the game! congrats");
+					if ( obj.vue.objs.chatTorInge.value > 28 ) obj.vue.headlines.push("Post your times and screenshots here: https://mopolauta.moposite.com/viewtopic.php?f=3&t=10065");
 					obj.vue.objs.chatTorInge.value++;
 					obj.vue.scrollHeadlines(); // scroll to end
 				},

@@ -9,6 +9,7 @@ var app = new Vue({
 		headlinesShown: 3,
 		gameOver: false,
 		debug: false,
+		bugReport: false,
 		lcol: lcol,
 		rcol: rcol,
 		hcol: hcol,
@@ -63,24 +64,29 @@ var app = new Vue({
 			// a number of at least between 1-2 growing bigger with more achievements
 			var vue = this;
 			var factor = Math.round( Math.random() ) + 1; // 1 or 2
-			factor *= vue.objs.battleWins.value + 1;
+			factor *= Math.log(vue.objs.battleWins.value * vue.objs.battleWins.value + 3) + 1; // don't let this affect too much, as this number can be > 100
 			factor *= vue.objs.elmaCupWins.value + 1;
 			factor *= vue.objs.worldCupWins.value + 1;
-			factor *= vue.objs.worldRecords.value + 1;
+			factor *= Math.log(vue.objs.worldRecords.value * vue.objs.worldRecords.value + 3) + 1;  // don't let this affect too much, as this number can be > 100
 			if (vue.objs.totalTime.value < 45) factor *= 47 - Math.floor(vue.objs.totalTime.value);
 			return factor;
 		},
 
-		save(){
+		saveData(data){
 			var allCols = [];
 			allCols.push.apply(allCols, this.lcol);
 			allCols.push.apply(allCols, this.rcol);
 			allCols.push.apply(allCols, this.hcol);
 		
 			allCols.forEach( function(obj){
-				localStorage[obj.name] = JSON.stringify(obj.value); // stringify to store type if non-string, also avoid storing [object Object]
+				data[obj.name] = JSON.stringify(obj.value); // stringify to store type if non-string, also avoid storing [object Object]
 			});
-			localStorage['headlines'] = JSON.stringify(this.headlines);
+			data['headlines'] = JSON.stringify(this.headlines);
+			return data;
+		},
+
+		save(){
+			this.saveData(localStorage);
 		},
 
 		load(){

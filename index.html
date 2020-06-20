@@ -33,9 +33,19 @@
 			<h1>IncrElastoMania <small>Elma Simulation</small></h1>
 			<h5>Code Name: Elma 4D QLED 8K</h5>
 			<b-button variant="success" @click="save();">Save</b-button>
+			<b-button variant="warning" @click="bugReport = !bugReport">Bug Report</b-button>
 			<a target="_blank" href="https://github.com/RobinManoli/IncrElastoMania">GitHub</a>
 			<b-button variant="danger" @click="if (confirm('Lose all changes and restart?')) reset();"  style="float:right;">Reset</b-button>
 			<b-button variant="warning" @click="load();" style="float:right;">Load</b-button>
+
+			<div v-if="bugReport" style="margin:1em;">
+				If you found a bug, please report it on
+				<a target="_blank" href="https://github.com/RobinManoli/IncrElastoMania/issues">GitHub</a>
+				or <a target="_blank" href="https://mopolauta.moposite.com/viewtopic.php?f=3&t=10065">mopolauta</a>.
+				Remember to describe the bug, and also copypaste this data below:<br>
+				<textarea style="width:100%;">{{ JSON.stringify(saveData({})) }}</textarea>
+			</div>
+
 			<b-list-group class="mb-5 headlines">
 				<b-list-group-item v-for="headline, i in headlines.slice(headlineCursor, headlineCursor+headlinesShown)" variant="info">
 					<b-icon v-if="i == 0 && headlineCursor != 0" icon="arrow-up" @click="headlineCursor--"></b-icon>

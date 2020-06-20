@@ -9,7 +9,7 @@ Vue.component('object-item', {
 					{{ obj.label }}: {{ displayValue(obj) }}
 					<span v-for="action in obj.actions">
 						<b-button v-if="!('visibleWhen' in action) || action.visibleWhen(obj, action)" @click="actionPerform(obj, action)" :disabled="isDisabled(obj, action)" size="sm" style="margin:0 1em;">
-							{{ action.label }} {{ ('appleCost' in action) ? "(" +Math.round(action.appleCost(obj))+ " apples)":"" }}
+							{{ action.label }} {{ ('appleCost' in action) ? "(" +Math.round(action.appleCost(obj)).toLocaleString()+ " apples)":"" }}
 						</b-button>
 					</span>
 					<!--<b-button v-if="debug" @click="obj.value++" size="sm">+</b-button>
@@ -59,7 +59,11 @@ Vue.component('object-item', {
 				return minutes + ":" + seconds;
 			}
 			//https://stackoverflow.com/a/41652921
-			else if (this.isNumeric(obj.value)) return Math.trunc(obj.value * 100) / 100;
+			else if (this.isNumeric(obj.value) && obj.name != 'year')
+			{
+				var n = Math.trunc(obj.value * 100) / 100;
+				return n.toLocaleString()
+			}
 			return obj.value;
 		},
 		
