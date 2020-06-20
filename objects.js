@@ -312,7 +312,7 @@ lcol.push(
 
 						var p = 0.02 * (46-minutebreak); // increase wr chance with lower tt
 						p /= (obj.vue.objs.worldRecords.value/4) + 1; // decrease wr chance with more possesed wrs
-						console.log("world records", obj.vue.objs.worldRecords.value, "tt", minutebreak, "chance:", p);
+						//console.log("world records", obj.vue.objs.worldRecords.value, "tt", minutebreak, "chance:", p);
 						if (totalTimeAfter < 45 && Math.random() < p && obj.vue.objs.worldRecords.value < 54 )
 						{
 							obj.vue.objs.worldRecords.value++;
