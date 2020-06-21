@@ -454,7 +454,7 @@ lcol.push(
 					obj.vue.objs.plays.value += 1;
 				},
 				visibleWhen: function(obj, action){ return obj.vue.objs.plays.value > 20000 },
-				disabledWhen: function(obj, action){ return obj.vue.objs.plays.value % 100 != 9; },
+				disabledWhen: function(obj, action){ return obj.vue.objs.plays.value % 20 != 9; },
 			},
 			{
 				name: "getPrize",
@@ -669,7 +669,7 @@ lcol.push(
 
 					if (obj.vue.objs.worldCupVersion.value == 1) obj.vue.objs.playedFirstWorldCup.value = 1;
 				},
-				visibleWhen: function(obj, action){ return obj.vue.objs.worldCupEventsLeft.value == 0 },
+				visibleWhen: function(obj, action){ return obj.vue.objs.worldCupEventsLeft.value == 0 && obj.vue.objs.worldCupPosition.value != 0 },
 			},
 		],
 		visibleWhen: function(obj){ return obj.vue.objs.worldCupActive.value == 1 },
